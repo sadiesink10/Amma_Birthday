@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Base Styles ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FAF7F0;
+  color: #725B50;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #781D35;
+}
+
+/* ===== Paper texture overlay ===== */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(213, 183, 122, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(217, 163, 169, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(120, 29, 53, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Polaroid frame ===== */
+.polaroid-frame {
+  background: #ffffff;
+  padding: 12px 12px 44px 12px;
+  box-shadow: 
+    0 2px 8px rgba(114, 91, 80, 0.1),
+    0 8px 24px rgba(114, 91, 80, 0.08),
+    inset 0 0 0 1px rgba(114, 91, 80, 0.05);
+  position: relative;
+}
+
+.polaroid-frame::after {
+  content: '♥';
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  color: #781D35;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.polaroid-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9A3A9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #781D35;
+}
+
+/* ===== Scrapbook decorations ===== */
+.tape-strip {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: rgba(213, 183, 122, 0.3);
+  border: 1px solid rgba(213, 183, 122, 0.15);
+  z-index: 2;
+}
+
+.tape-strip-top {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+/* ===== Handwritten accent line ===== */
+.handwritten-accent {
+  font-family: 'Dancing Script', cursive;
+  color: #781D35;
+}
+
+/* ===== Divider ===== */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #D5B77A, transparent);
+  margin: 0 auto;
+}
+
+/* ===== Heart pulse button ===== */
+.heart-pulse-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.heart-pulse-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #781D35, #D9A3A9, #781D35);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.heart-pulse-btn:hover::before {
+  opacity: 0.2;
+}
+
+/* ===== Video container ===== */
+.video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 16px rgba(114, 91, 80, 0.12),
+    0 12px 40px rgba(114, 91, 80, 0.08);
+  border: 3px solid rgba(213, 183, 122, 0.3);
+}
+
+.video-container video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Sparkle ===== */
+.sparkle-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #D5B77A;
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* ===== Confetti ===== */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 12px;
+  top: -20px;
+  z-index: 50;
+  animation: confetti-fall linear forwards;
+  pointer-events: none;
+}
